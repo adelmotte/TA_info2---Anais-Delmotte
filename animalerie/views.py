@@ -20,18 +20,18 @@ def action(request):
     except (KeyError, Animal.DoesNotExist):
         return render(request, 'animalerie/action.html', {'error_message': "You didn't select a choice."})
     else:
-        aux = ''
+        do = ''
         if selected_action == 'nourrir':
-            aux = nourrir(selected_animal.NAME)
+            do = nourrir(selected_animal.NAME)
         elif selected_action == 'divertir':
-            aux = divertir(selected_animal.NAME)
+            do = divertir(selected_animal.NAME)
         elif selected_action == 'coucher':
-            aux = coucher(selected_animal.NAME)
+            do = coucher(selected_animal.NAME)
         elif selected_action == 'reveiller':
-            aux = reveiller(selected_animal.NAME)
-        if aux == '' or aux is None:
+            do = reveiller(selected_animal.NAME)
+        if do == '' or do is None:
             return HttpResponseRedirect(reverse('index'))
         else:
-            return render(request, 'animalerie/action.html', {'aux': aux})
+            return render(request, 'animalerie/action.html', {'do': do})
 
 # Create your views here.
